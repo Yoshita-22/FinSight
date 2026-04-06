@@ -1,9 +1,10 @@
 import React from 'react'
 import { useRole } from '../../context/RoleContext';
-
+import { useTransactions } from '../../context/TransactionsContext';
+import EditTransactionModal from './EditTransaction';
 function TransactionRow(props) {
-  const {transactionDetails} = props;
-  const {date,amount,category,type} = transactionDetails;
+  const {transactionDetails,onEdit} = props;
+  const {id,date,amount,category,type} = transactionDetails;
   const formattedDate = 
   new Date(date).toLocaleDateString('en-IN', {
   day: '2-digit',
@@ -11,8 +12,7 @@ function TransactionRow(props) {
   year: 'numeric'
 });
   const {role} = useRole();
-
-  
+  const {deleteTransactions} = useTransactions()
   return (
     <>
       <div className="
@@ -65,8 +65,8 @@ function TransactionRow(props) {
   {
     role=="admin" && (
       <div className="flex gap-4">
-        <button className="text-gray-400 hover:text-blue-500">Edit</button>
-        <button className="text-gray-400 hover:text-red-500">Delete</button>
+        <button className="text-gray-400 hover:text-blue-500" onClick = {()=>onEdit(transactionDetails)}>Edit</button>
+        <button className="text-gray-400 hover:text-red-500" onClick = {() =>deleteTransactions(id)} >Delete</button>
       </div>
     )
   }

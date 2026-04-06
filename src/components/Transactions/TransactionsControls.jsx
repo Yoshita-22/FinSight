@@ -27,10 +27,8 @@ function TransactionsControls(props) {
           pl-11 pr-4 py-2
           rounded-xl
           outline-none
-
           bg-white/60 dark:bg-white/5
           backdrop-blur-md
-
           border border-border-light dark:border-border-dark
 
           text-text-primaryLight dark:text-text-primaryDark

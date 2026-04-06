@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import { useTransactions } from '../../context/TransactionsContext';
 import TransactionEntries from '../Transactions/TransactionEntries';
  
-function PaginatedItems({ itemsPerPage,transactions }) {
+function PaginatedItems({ itemsPerPage,transactions,onEdit }) {
     const Paginate = ReactPaginate.default || ReactPaginate;
 
   const [itemOffset, setItemOffset] = useState(0);
@@ -24,7 +24,7 @@ function PaginatedItems({ itemsPerPage,transactions }) {
 
   return (
     <>
-      <TransactionEntries currentTransactions = {currentTransactions}/>
+      <TransactionEntries currentTransactions = {currentTransactions} onEdit = {onEdit}/>
       <Paginate
         breakLabel="..."
         nextLabel="next >"
