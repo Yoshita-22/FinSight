@@ -17,7 +17,7 @@ function SummarySection({selectedMonth,proceesedTransactions}) {
             <p className = "text-sm  text-text-secondaryLight dark:text-text-secondaryDark mt-1">Get insights from income,expenses and savings </p>
         </div>
         <div>
-            <SummaryCards income = {income} expenses = {expenses}/>
+            <SummaryCards income = {income} expenses = {expenses} />
         </div>
     </div>
      

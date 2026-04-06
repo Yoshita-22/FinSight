@@ -5,11 +5,17 @@ import BalanceLineChart from "./BalanceChart";
 import { formatMonth } from "../utils/formatMonth";
 import SpendingPieChart from "./SpendingPieChart";
 import { getCategoryData } from "../utils/getCategoryData";
+import { getTopCategory } from "../utils/gotTopCategory";
+import { getSavingsRate } from "../utils/getSavingsRate";
+import { getMonthlyComparison } from "../utils/getMonthlyComparision";
 function ChartsSection({ selectedMonth,proceesedTransactions }) {
     const {transactions} = useTransactions();
     const formatedMonth = formatMonth(selectedMonth)
     const data = getMonthlyData(transactions);
     const pieData = getCategoryData(proceesedTransactions)
+    const topCategory = getTopCategory(pieData);
+    const savingsRate = getSavingsRate(proceesedTransactions)
+    const monthlyComparision = getMonthlyComparison(transactions,selectedMonth)
     console.log(pieData)
   return (
     <div className="px-2 mt-8">
@@ -117,16 +123,16 @@ function ChartsSection({ selectedMonth,proceesedTransactions }) {
           <div className="space-y-3 text-sm">
 
             <p className="text-text-primaryLight dark:text-text-primaryDark">
-              💡 You spent most on <span className="font-semibold">Food</span>
+               You spent most on <span className="font-semibold">{topCategory.name} ({topCategory.value})</span>
             </p>
 
             <p className="text-text-primaryLight dark:text-text-primaryDark">
-              📉 Expenses decreased by 
-              <span className="text-income font-semibold"> 12%</span> from last month
+               Expenses decreased by 
+              <span className="text-income font-semibold"> {monthlyComparision}%</span> from last month
             </p>
 
             <p className="text-text-primaryLight dark:text-text-primaryDark">
-              ⚠️ Your savings rate is below recommended level
+               Your savings rate is {savingsRate}
             </p>
 
           </div>
