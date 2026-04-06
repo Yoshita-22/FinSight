@@ -41,6 +41,30 @@ export default {
         warning: "#F59E0B",
       },
     },
+    keyframes: {
+        fadeUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      gradientMove: {
+        "0%": { backgroundPosition: "0% 50%" },
+        "100%": { backgroundPosition: "200% 50%" },
+      },
+      animation: {
+      gradient: "gradientMove 3s linear infinite",
+      },
+      },
+
+      animation: {
+        fadeUp: "fadeUp 0.6s ease forwards",
+      },
+    
   },
   plugins: [],
 };
