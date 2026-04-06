@@ -120,7 +120,7 @@ function ChartsSection({ selectedMonth,proceesedTransactions }) {
             Insights
           </h3>
 
-          <div className="space-y-3 text-sm">
+          {transactions.length!=0 ? (<div className="space-y-3 text-sm">
 
            <p className="text-text-primaryLight dark:text-text-primaryDark">
                 You spent most on{" "}
@@ -139,7 +139,11 @@ function ChartsSection({ selectedMonth,proceesedTransactions }) {
             </p>
 
           </div>
-
+):(
+    <div className='flex justify-center'>
+        <p className='text-xl  text-text-secondaryLight dark:text-text-secondaryDark mt-1'>No insights available.....</p>
+      </div>
+)}
         </div>
 
       </div>
