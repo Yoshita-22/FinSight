@@ -122,9 +122,12 @@ function ChartsSection({ selectedMonth,proceesedTransactions }) {
 
           <div className="space-y-3 text-sm">
 
-            <p className="text-text-primaryLight dark:text-text-primaryDark">
-               You spent most on <span className="font-semibold">{topCategory.name} ({topCategory.value})</span>
-            </p>
+           <p className="text-text-primaryLight dark:text-text-primaryDark">
+                You spent most on{" "}
+                <span className="font-semibold">
+                    {topCategory ? `${topCategory.name} (${topCategory.value})` : "N/A"}
+                </span>
+                </p>
 
             <p className="text-text-primaryLight dark:text-text-primaryDark">
                Expenses decreased by 
