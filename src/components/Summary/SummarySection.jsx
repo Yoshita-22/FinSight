@@ -1,12 +1,14 @@
 import React from 'react'
 import SummaryCards from './SummaryCards'
-import { useTransactions } from '../../context/TransactionsContext'
 
-function SummarySection() {
+import { useTransactions } from '../../context/TransactionsContext';
+
+function SummarySection({SelectedMonth,proceesedTransactions}) {
     const {transactions} = useTransactions();
-    let income = transactions.filter((tx)=>tx.type=="income").reduce((acc,curr)=>acc + Number(curr.amount),0);
-    let expenses = transactions.filter((tx)=>tx.type=="expense").reduce((acc,curr)=>acc + Number(curr.amount),0);
-    console.log(expenses);
+    
+    
+    let income = proceesedTransactions.filter((tx)=>tx.type=="income").reduce((acc,curr)=>acc + Number(curr.amount),0);
+    let expenses =proceesedTransactions.filter((tx)=>tx.type=="expense").reduce((acc,curr)=>acc + Number(curr.amount),0);
   return (
     <>
     <div className="px-2 mt-6">

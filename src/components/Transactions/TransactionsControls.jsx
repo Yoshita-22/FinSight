@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { FiSearch } from "react-icons/fi";
+import { useTransactions } from '../../context/TransactionsContext';
 
 function TransactionsControls(props) {
-   
+    const {month,setMonth} = useTransactions();
     const {searchInput,setSearchInput,filter,setFilter,sort,setSort,options,sortOptions} = props;
 
   return (
@@ -92,9 +93,8 @@ function TransactionsControls(props) {
         }
      </select>
     </div>
-   </div>
-    
-    
+
+   </div> 
     </>
   )
 }

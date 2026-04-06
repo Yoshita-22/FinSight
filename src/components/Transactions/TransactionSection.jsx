@@ -7,7 +7,9 @@ import TransactionsControls from './TransactionsControls';
 import { useState } from 'react';
 import { FaCheck, FaMoneyBill, FaArrowDown } from "react-icons/fa";
 import AddTransactionModal from './AddTransaction';
-function TransactionSection() {
+
+
+function TransactionSection({selectedMonth,proceesedTransactions}) {
   const {transactions} = useTransactions();
   const options = [
     { label: "All", value: "all", icon: <FaCheck /> },
@@ -20,22 +22,24 @@ function TransactionSection() {
   const [editingTx, setEditingTx] = useState(null);
   const[showTransaction,setShowTransaction] = useState(false);
   const {role} = useRole();
+  
+    
+    
     //search by category
-    let searchedTransactions = transactions.filter((transaction)=>{
+   
+     proceesedTransactions = proceesedTransactions.filter((transaction)=>{
        return  transaction.category.toLowerCase().includes(searchInput.toLowerCase())
     });
     //filter transactions based on type
-    let filteredTransactions = searchedTransactions.filter((transaction)=>{
+    proceesedTransactions = proceesedTransactions.filter((transaction)=>{
       if(filter=="all") return true;
       return transaction.type == filter;
     });
     //sort by date or amount
-    let sortedTransactions = [...filteredTransactions];
-    if(sort==sortOptions[0]) sortedTransactions =  sortedTransactions.sort((a, b) => new Date(b.date) - new Date(a.date)) // latest;//latest
-    else if(sort==sortOptions[1]) sortedTransactions =  sortedTransactions.sort((a,b)=>new Date(a.date)-new Date(b.date))//oldest
-    else if(sort==sortOptions[2]) sortedTransactions = sortedTransactions.sort((a,b)=>b.amount-a.amount);//amount from high to low
-    else sortedTransactions = sortedTransactions.sort((a,b)=>a.amount-b.amount);//amount from low to high
-
+    if(sort==sortOptions[0]) proceesedTransactions =  proceesedTransactions.sort((a, b) => new Date(b.date) - new Date(a.date)) // latest;//latest
+    else if(sort==sortOptions[1]) proceesedTransactions =  proceesedTransactions.sort((a,b)=>new Date(a.date)-new Date(b.date))//oldest
+    else if(sort==sortOptions[2]) proceesedTransactions = proceesedTransactions.sort((a,b)=>b.amount-a.amount);//amount from high to low
+    else proceesedTransactions = proceesedTransactions.sort((a,b)=>a.amount-b.amount);//amount from low to high
   
   return (
     <>
@@ -65,7 +69,7 @@ function TransactionSection() {
             shadow-sm
             transition ${role=="admin"?"bg-primary text-white hover:opacity-90"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
-      onClick = {()=>setShowTransaction(true)}
+        onClick = {()=>setShowTransaction(true)}
         >
         + Add Transaction
       </button>
@@ -93,7 +97,7 @@ function TransactionSection() {
     </div>
     
     <div>
-        <PaginatedItems itemsPerPage={5} transactions={sortedTransactions} onEdit={(tx) => setEditingTx(tx)}/>
+        <PaginatedItems itemsPerPage={5} transactions={proceesedTransactions} onEdit={(tx) => setEditingTx(tx)}/>
          {editingTx && (
                     <EditTransactionModal
                         transaction={editingTx}
