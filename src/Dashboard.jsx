@@ -5,10 +5,12 @@ import TransactionSection from './components/Transactions/TransactionSection'
 import Navbar from './components/common/Navbar'
 import { getMonthTransactions } from './components/utils/transactions'
 import { useTransactions } from './context/TransactionsContext'
+import ChartsSection from './components/Charts/ChartsSection'
 function Dashboard() {
     const [selectedMonth, setSelectedMonth] = useState(
         new Date().toISOString().slice(0, 7)
     );
+    console.log(selectedMonth)
     const {transactions} = useTransactions();
     const proceesedTransactions  = getMonthTransactions(selectedMonth,transactions)
   return (
@@ -40,6 +42,7 @@ function Dashboard() {
 
 </div>
     <SummarySection selectedMonth = {selectedMonth} proceesedTransactions={proceesedTransactions }/>
+    <ChartsSection selectedMonth={selectedMonth} proceesedTransactions = {proceesedTransactions}/>
     <TransactionSection selectedMonth = {selectedMonth} proceesedTransactions={proceesedTransactions }/>
     </>
   )

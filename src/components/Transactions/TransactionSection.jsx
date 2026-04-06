@@ -96,7 +96,9 @@ function TransactionSection({selectedMonth,proceesedTransactions}) {
      {role=="admin" && <p className = "text-text-primaryLight dark:text-text-primaryDark font-bold">Actions</p>}
     </div>
     
-    <div>
+    {
+    proceesedTransactions.length>0 ? (
+      <div>
         <PaginatedItems itemsPerPage={5} transactions={proceesedTransactions} onEdit={(tx) => setEditingTx(tx)}/>
          {editingTx && (
                     <EditTransactionModal
@@ -105,6 +107,13 @@ function TransactionSection({selectedMonth,proceesedTransactions}) {
                     />
           )}
     </div>
+    ):(
+      <div className='flex justify-center'>
+        <p className='text-xl  text-text-secondaryLight dark:text-text-secondaryDark mt-1'>No transactions available.....</p>
+      </div>
+    )
+    
+    }
     
     </>
   )
